@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 public class Search_Frequency {
 
-    private static final String CSV_FILE_PATH = "/Users/yashpatel/eclipse-workspace/FlightPriceAnalysis/src/Search_Frequency/searchFrequency.csv";
+    private static final String CSV_FILE_PATH = "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Search_Frequency/searchFrequency.csv";
 
     public String FrequencySearch_SpellChecking(String checkWord) throws Exception {
     	Word_Completion WC = new Word_Completion();
@@ -27,8 +27,7 @@ public class Search_Frequency {
 		}
 //    
         Map<String, Integer> wordFreq = loadWordFrequency();
-        
-        
+                
 //      String searchTerm = spellchecker.checkandSuggestWords();
       searchTerm = searchTerm.toLowerCase();
       int frequency = wordFreq.getOrDefault(searchTerm, 0);

@@ -46,7 +46,7 @@ public class EXE {
 				}
 				else 
 				{
-					System.out.println("\n ...input not valid! Please state 1 OR 2 ...\n");
+					System.out.println("\n ...Input not valid! Please enter 1 OR 2 ...\n");
 				}
 			}
 			
@@ -56,7 +56,7 @@ public class EXE {
 				String start_crawl = "";
 				while (flag == true) 
 				{
-					System.out.println("\nDo you want to Crawl latest Flights (this requires system to be online) : ");
+					System.out.println("\nDo you want to Crawl latest Flights? Yes or No (Note: This requires system to be online) : ");
 					start_crawl = scan.next().toLowerCase();
 					
 					if (start_crawl.matches("yes") == true)
@@ -69,19 +69,25 @@ public class EXE {
 					}
 					else 
 					{
-						System.out.println("\n ...input not valid! Please state Yes or No...\n");
+						System.out.println("\n ...Input not valid! Please state Yes or No...\n");
 					}
 				}
 				
 				if(start_crawl.matches("yes"))
 				{
 					Runtime_Crawler RC = new Runtime_Crawler();
-					System.out.print("\nEnter the origin : ");
+					System.out.print("\nEnter the Origin : ");
 					String origin = scan.next().toLowerCase();
+					
+					
+					///word comp
 					WC.Word_Completor(origin);
+					
+					
+					/// freq
 					origin = SF.FrequencySearch_SpellChecking(origin);
 					
-					System.out.print("\nEnter the destination : ");
+					System.out.print("\nEnter the Destination : ");
 					String destination = scan.next().toLowerCase();
 					WC.Word_Completor(destination);
 					destination = SF.FrequencySearch_SpellChecking(destination);
@@ -125,7 +131,7 @@ public class EXE {
 					}
 					String[] date_object = input_date.split("/");
 					WebDriver driver = new EdgeDriver();
-					String folderPath = "tmp";
+					String folderPath = "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/tmp";
 //					SSC.Crawl_Latest_Selenium(origin, destination);
 					RC.runtime_crawl(origin, destination, Integer.parseInt(date_object[0]), Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]), folderPath, driver);	
 					
@@ -224,7 +230,7 @@ public class EXE {
 						}
 						else 
 						{
-							System.out.println("\n ...input not valid! Please state Yes or No...\n");
+							System.out.println("\n ...Input not valid! Please state Yes or No...\n");
 						}
 					}
 					
@@ -235,7 +241,7 @@ public class EXE {
 						System.out.println("Enter the year for which you want to update the local data [yyyy]: ");
 						int date_year = scan.nextInt();
 						
-						String[] cities = {"Ahmedabad", "Dubai", "Toronto"};
+						String[] cities = {"Mumbai", "London", "Thailand", "Surat", "Pune"};
 						
 						Start_Selenium_Crawler SSC = new Start_Selenium_Crawler();
 						SSC.Crawl_Latest_Selenium(cities, date_month_string, date_year);
@@ -347,7 +353,7 @@ public class EXE {
 			}
 			if(feature == 2)
 			{
-				String[] folderpaths = {"Crawled_Files_Kayak", "Crawled_Files_Booking", "Crawled_Files_Onetravel"};
+				String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Kayak", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Booking", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Onetravel"};
 				
 				// Frequency Count
 //				System.out.println("Frequency Count :");
@@ -398,7 +404,7 @@ public class EXE {
 				}
 				else 
 				{
-					System.out.println("\n ...input not valid! Please state Yes or No...\n");
+					System.out.println("\n ...Input not valid! Please state Yes or No...\n");
 				}
 			}
 		} 

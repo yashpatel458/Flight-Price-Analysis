@@ -8,9 +8,13 @@ public class Spellchecking
 {
 	    private Set<String> dictionary;
 	    
+	    //If quick (checking if a word is in the dictionary) are a priority, a HashSet or TreeSet might be more suitable. 
+	    //If you need to efficiently search for words with a common prefix, a Trie could be a good choice. 
+	    //If you need to preserve insertion order or need positional access to elements, an ArrayList might be appropriate.
+	    
 	    public Spellchecking() throws FileNotFoundException {
 	            dictionary = new HashSet<>();  // Initialize the HashSet
-	            Scanner sc = new Scanner(new File("/Users/yashpatel/eclipse-workspace/FlightPriceAnalysis/src/DISNY/dictionary.txt"));  
+	            Scanner sc = new Scanner(new File("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"));  
 	            while (sc.hasNext()) {
 	                String w = sc.next().toLowerCase();  
 	                dictionary.add(w);  // Add word to the dictionary 
@@ -23,6 +27,8 @@ public class Spellchecking
 	        return dictionary.contains(word.toLowerCase());  
 	    }
 	    
+	    
+	    // Recommends new word
 	    public List<String> recommendations(String testWord) {
 	        List<String> recommendationArrayList = new ArrayList<>();
 	        for (String correctWord : dictionary) {
