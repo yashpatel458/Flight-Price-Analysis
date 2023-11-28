@@ -31,7 +31,8 @@ public class Search_Frequency {
 //      String searchTerm = spellchecker.checkandSuggestWords();
       searchTerm = searchTerm.toLowerCase();
       int frequency = wordFreq.getOrDefault(searchTerm, 0);
-      System.out.println(searchTerm + " word was searched for " + frequency + " times.");
+      System.out.print("\n-----Frequency Count-----");
+      System.out.println("\n"+searchTerm + " word was searched for " + frequency + " times.");
       wordFreq.put(searchTerm, frequency + 1);
       saveWordFrequency(wordFreq);
 		return searchTerm;

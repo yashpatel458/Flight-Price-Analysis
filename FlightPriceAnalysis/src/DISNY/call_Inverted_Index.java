@@ -29,7 +29,7 @@ public class call_Inverted_Index {
 		    	  String content = "";
 //		    	  System.out.println("File: " + listOfFiles[i].getName());;
 		    	  		String txt = "";
-		    	  		File file = new File(folderpath + "\\" + listOfFiles[i].getName());
+		    	  		File file = new File(folderpath + "//" + listOfFiles[i].getName());
 		    	  		
 		    	  		//Scanner class to implement scanning
 		    	  		Scanner scan = new Scanner(file);
@@ -64,7 +64,8 @@ public class call_Inverted_Index {
 	    		    Inverted_Indexing index = new Inverted_Indexing(documents);
 
 	    	System.out.println("");
-	        System.out.println("Indexing for ' " + pat + " ': " + Arrays.toString(index.searchIndex(pat).toArray()));
+			System.out.println("-----Inverted Indexing-----");
+	        System.out.println("\nIndexing for ' " + pat + " ': " + Arrays.toString(index.searchIndex(pat).toArray()));
 	    	System.out.println("");
 	    }
 	}

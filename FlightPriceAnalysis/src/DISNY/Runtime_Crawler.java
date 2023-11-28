@@ -95,7 +95,7 @@ public class Runtime_Crawler {
 		//Onetravel
 		driver.get("https://www.onetravel.com/air/listing?&d1="+origin_short+"&r1="+destination_short+"&dt1="+date_month+"/"+date_day+"/"+date_year+"&triptype=ONEWAYTRIP&cl=ECONOMY");
 		
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		driver.findElement(By.cssSelector("[data-test='header-block__link']")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("[aria-label='CAD']")).click();

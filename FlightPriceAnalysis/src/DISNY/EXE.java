@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 public class EXE {
-
+	
 	public static void main(String[] args) throws Exception 
 	{
 		LocalDate today = LocalDate.now();
@@ -27,9 +27,10 @@ public class EXE {
 			int feature = 1;
 			while(flag == true)
 			{
-				System.out.println("\nWhich feature do you want to explore ? : ");
-				System.out.println("[1] Flight Price Analysis");
-				System.out.println("[2] Additional Features\n");
+				System.out.println("\n============ WELCOME TO AEROQUEST ============");
+				System.out.println("\nSelect any one option:");
+				System.out.println("[1] Perform Flight Price Analysis");
+				System.out.println("[2] Explore Additional Features\n");
 				System.out.print("Input : ");
 				String feature_select = scan.next();
 				if( checkNum(feature_select) )  {}
@@ -56,7 +57,7 @@ public class EXE {
 				String start_crawl = "";
 				while (flag == true) 
 				{
-					System.out.println("\nDo you want to Crawl latest Flights? Yes or No (Note: This requires system to be online) : ");
+					System.out.println("\nDo you want to crawl latest flights? Yes or No (Note: This requires system to be online) : ");
 					start_crawl = scan.next().toLowerCase();
 					
 					if (start_crawl.matches("yes") == true)
@@ -76,18 +77,18 @@ public class EXE {
 				if(start_crawl.matches("yes"))
 				{
 					Runtime_Crawler RC = new Runtime_Crawler();
-					System.out.print("\nEnter the Origin : ");
+					System.out.print("\nEnter the Origin place: ");
 					String origin = scan.next().toLowerCase();
 					
 					
-					///word comp
+					/// Word Completion Feature
 					WC.Word_Completor(origin);
 					
 					
-					/// freq
+					/// Frequency Count Feature
 					origin = SF.FrequencySearch_SpellChecking(origin);
 					
-					System.out.print("\nEnter the Destination : ");
+					System.out.print("\nEnter the Destination place : ");
 					String destination = scan.next().toLowerCase();
 					WC.Word_Completor(destination);
 					destination = SF.FrequencySearch_SpellChecking(destination);
@@ -167,7 +168,7 @@ public class EXE {
 					try { driver.quit(); }
 					catch (Exception e) {}
 			        
-					String[] folderpaths = {"tmp"};
+					String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/tmp"};
 					
 					// Frequency Count
 //					System.out.println("Frequency Count :");
@@ -351,31 +352,37 @@ public class EXE {
 					}
 				}
 			}
+			
+			
+// IF YOU ENTER FEATURE NUMBER 2
+			
 			if(feature == 2)
 			{
 				String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Kayak", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Booking", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Onetravel"};
 				
 				// Frequency Count
-//				System.out.println("Frequency Count :");
+				System.out.println("\n================================== FEATURE 1 =============================================");
+				System.out.println("=>[Frequency Count] with [Word Completion & Spell Checking]");
 				Frequency_Count FC = new Frequency_Count(0, null);
-				System.out.println("\nEnter a Keyword for Page Ranking : ");
+				System.out.println("\nEnter a City for Frequency Count: ");
 				String pat = scan.next();
 				WC.Word_Completor(pat);
 				pat = SF.FrequencySearch_SpellChecking(pat);
-				FC.Frequency_Counter(folderpaths, pat);
 				
 				// Page Ranking
-//				System.out.println("Page Ranking :");
+				System.out.println("\n================================== FEATURE 2 =============================================");
 				Page_Ranking PR = new Page_Ranking(0, null);
-				System.out.println("\nEnter a Keyword for Page Ranking : ");
+				System.out.println("=>[Page Ranking] with [Word Completion, Spell Checking & Frequency Count]");
+				System.out.println("\nEnter a City for Page Ranking : ");
 				pat = scan.next();
 				WC.Word_Completor(pat);
 				pat = SF.FrequencySearch_SpellChecking(pat);
 				PR.Page_Ranker(folderpaths, pat);
 				
 				// Inverted Indexing
-//				System.out.println("Inverted Indexing :");
-				System.out.println("\nEnter a Keyword for Page Ranking : ");
+				System.out.println("\n================================== FEATURE 3 =============================================");
+				System.out.println("=>[Inverted Indexing] with [Word Completion, Spell Checking & Frequency Count]");
+				System.out.println("\nEnter a City for Inverted Indexing : ");
 				pat = scan.next();
 				WC.Word_Completor(pat);
 				pat = SF.FrequencySearch_SpellChecking(pat);
@@ -390,7 +397,8 @@ public class EXE {
 			flag = true;
 			while (flag == true) 
 			{
-				System.out.println("\nDo you want to quit the System : ");
+				System.out.println("\n================================================================================");
+				System.out.println("That's a wrap! Do you want to exit the system : ");
 				quit_string = scan.next().toLowerCase();
 				
 				if (quit_string.matches("yes") == true)

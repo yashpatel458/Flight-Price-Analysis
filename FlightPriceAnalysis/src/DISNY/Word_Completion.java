@@ -20,7 +20,8 @@ public class Word_Completion {
 
         TrieNode prefixNode = searchPrefix(prefix.toLowerCase());
         if (prefixNode != null) {
-            System.out.println("\nCompletions for Word \"" + prefix + "\":");
+        	System.out.print("\n-----Word Completion-----");
+            System.out.println("\nCompletions for the word \"" + prefix + "\" are...");
             printCompletions(prefixNode, prefix);
         } else {
             System.out.println("\nNo completions found for \"" + prefix + "\"");

@@ -62,7 +62,7 @@ public class Booking_File_Parser {
             org.jsoup.nodes.Element destAirportElement = flightCard.selectFirst("[data-testid=flight_card_segment_destination_airport_0]");
             String destinationAirport = destAirportElement.text();
 //            System.out.println("Destination : "+destinationAirport);
-            org.jsoup.nodes.Element priceElement = flightCard.selectFirst("div.css-vxcmzt");
+            org.jsoup.nodes.Element priceElement = flightCard.selectFirst(".FlightCardPrice-module__priceContainer___nXXv2");
             String[] price_object = priceElement.text().split(",");
             String price = price_object[0].replace("C$","").replace(".", "");
 //            System.out.println("Price : "+price);

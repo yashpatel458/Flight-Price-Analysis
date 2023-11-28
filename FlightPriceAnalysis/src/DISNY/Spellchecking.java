@@ -37,8 +37,7 @@ public class Spellchecking
 	                	if (probeTranspositions(correctWord, testWord) || probeSubstitutions(correctWord, testWord) || probeInsertions(correctWord, testWord)||probeDeletions(correctWord, testWord)) {
 	                		recommendationArrayList.add(correctWord);
 	                        }
-	                }
-	             
+	                }	             
 	        }
 	        return recommendationArrayList;
 	    }
@@ -175,14 +174,15 @@ public class Spellchecking
 	        Spellchecking spellchecker = new Spellchecking();
 	        
 	        if (spellchecker.probe(w)) {
-	            System.out.println("The spelling of the word is correct");
+	            System.out.println("\n-----Spell Checking-----");
+	            System.out.println("\nThe spelling of this word is correct!");
 	            return true;
 	        } else {
 	            List<String> recommendationArrayList = spellchecker.recommendations(w);
 	            if (recommendationArrayList.isEmpty()) {
-	                System.out.println("\nThe word is not spelled correctly and there are no recommendation for correction.\n");
+	                System.out.println("\nThe entered word is not spelled correctly and there are no recommendations for correction.\n");
 	            } else {
-	                System.out.println("\nThe word is not spelled correctly. recommendation for correction:\n");
+	                System.out.println("\nThe entered word is not spelled correctly. Here are some recommendations based on the search:\n");
 	                for (String suggestion : recommendationArrayList) {
 	                    System.out.println("- " + suggestion);
 	                }

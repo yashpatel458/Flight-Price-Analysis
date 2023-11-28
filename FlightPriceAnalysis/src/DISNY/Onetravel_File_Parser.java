@@ -36,6 +36,10 @@ public class Onetravel_File_Parser {
         }
         List<org.jsoup.nodes.Element> flightElements = doc.select("div.contract__content").subList(0, 4);
 
+        System.out.println(flightElements);
+      		
+                		
+      
         Flight_Detail[] bestOnetravelFlights = new Flight_Detail[3];
         
         for (int k=0 ; k<3 ; k++) 
