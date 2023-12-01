@@ -29,7 +29,7 @@ public class call_Inverted_Index {
 		    	  String content = "";
 //		    	  System.out.println("File: " + listOfFiles[i].getName());;
 		    	  		String txt = "";
-		    	  		File file = new File(folderpath + "//" + listOfFiles[i].getName());
+		    	  		File file = new File(folderpath + "/" + listOfFiles[i].getName());
 		    	  		
 		    	  		//Scanner class to implement scanning
 		    	  		Scanner scan = new Scanner(file);

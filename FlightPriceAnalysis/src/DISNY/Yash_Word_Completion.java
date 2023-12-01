@@ -4,11 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class Word_Completion {
+public class Yash_Word_Completion {
     private TrieNode root = new TrieNode();
-
+  
     public void Word_Completor(String prefix) throws FileNotFoundException {
-        try (Scanner sc = new Scanner(new FileReader("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"))) {
+        try (Scanner sc = new Scanner(new FileReader("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"))) 
+        {
             while (sc.hasNext()) {
                 String w = sc.next().toLowerCase();
                 insertWord(w);
@@ -106,7 +107,7 @@ public class Word_Completion {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Word_Completion wordCompletion = new Word_Completion();
+        Yash_Word_Completion wordCompletion = new Yash_Word_Completion();
         wordCompletion.Word_Completor("pre");
     }
 }

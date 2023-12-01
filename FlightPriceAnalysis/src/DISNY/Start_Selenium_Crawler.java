@@ -12,7 +12,7 @@ public class Start_Selenium_Crawler {
 		
 		Selenium_Crawler_Kayak SCK = new Selenium_Crawler_Kayak();
 		Selenium_Crawler_Booking SCB = new Selenium_Crawler_Booking();
-		Selenium_Crawler_Onetravel SCO = new Selenium_Crawler_Onetravel();
+		Selenium_Crawler_Cheapflights SCO = new Selenium_Crawler_Cheapflights();
 		
 		for(int l=1; l<=3; l++)
 		{
@@ -35,7 +35,7 @@ public class Start_Selenium_Crawler {
 						}
 						else if(l==3)
 						{
-							SCO.Onetravel_Web_Crawler(origin, destination, date_month, date_year);
+							SCO.Cheapflights_Web_Crawler(origin, destination, date_month, date_year);
 						}
 					}
 				}

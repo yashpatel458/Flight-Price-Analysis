@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class Spellchecking 
+public class Yash_Spellchecking 
 {
 	    private Set<String> dictionary;
 	    
@@ -12,22 +12,20 @@ public class Spellchecking
 	    //If you need to efficiently search for words with a common prefix, a Trie could be a good choice. 
 	    //If you need to preserve insertion order or need positional access to elements, an ArrayList might be appropriate.
 	    
-	    public Spellchecking() throws FileNotFoundException {
+	    public Yash_Spellchecking() throws FileNotFoundException {
 	            dictionary = new HashSet<>();  // Initialize the HashSet
 	            Scanner sc = new Scanner(new File("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"));  
 	            while (sc.hasNext()) {
 	                String w = sc.next().toLowerCase();  
 	                dictionary.add(w);  // Add word to the dictionary 
 	            }
-	            sc.close();  
-	            
+	            sc.close();  	            
 	    }
 	    
 	    public boolean probe(String word) {
 	        return dictionary.contains(word.toLowerCase());  
 	    }
-	    
-	    
+	    	    
 	    // Recommends new word
 	    public List<String> recommendations(String testWord) {
 	        List<String> recommendationArrayList = new ArrayList<>();
@@ -41,8 +39,7 @@ public class Spellchecking
 	        }
 	        return recommendationArrayList;
 	    }
-	    
-	    
+	    	    
 
 	    private int computeEditDistance(String s, String t) {
 	        int k = s.length();
@@ -65,7 +62,6 @@ public class Spellchecking
 	        }
 	        return jp[k][l];
 	    }
-
 	    
 	    private boolean probeTranspositions(String correctWord, String testWord) {
 	      //  System.out.println(o+ "in trans");
@@ -171,7 +167,7 @@ public class Spellchecking
 	    
 	    public boolean checkandSuggestWords(String w) throws FileNotFoundException {
 
-	        Spellchecking spellchecker = new Spellchecking();
+	        Yash_Spellchecking spellchecker = new Yash_Spellchecking();
 	        
 	        if (spellchecker.probe(w)) {
 	            System.out.println("\n-----Spell Checking-----");

@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class Selenium_Crawler_Onetravel {
+public class Selenium_Crawler_Cheapflights {
 	
-	public void Onetravel_Web_Crawler(String origin, String destination, String date_month, int date_year) throws Exception 
+	public void Cheapflights_Web_Crawler(String origin, String destination, String date_month, int date_year) throws Exception 
 	{
 		int last_day_of_month = 30; // 1 3 5 7 8 10 12 
 		if(date_month.matches("01") || date_month.matches("03") || date_month.matches("05") || date_month.matches("07") || date_month.matches("08") || date_month.matches("10") || date_month.matches("12") )
@@ -60,30 +60,30 @@ public class Selenium_Crawler_Onetravel {
 				date_day = "0" + f;
 			}
 			
-			driver.get("https://www.onetravel.com/air/listing?&d1="+origin_short+"&r1="+destination_short+"&dt1="+date_month+"/"+date_day+"/"+date_year+"&triptype=ONEWAYTRIP&cl=ECONOMY");
+			driver.get("https://www.cheapflights.ca/flight-search/"+origin_short+"-"+destination_short+"/"+date_year+"-"+date_month+"-"+date_day+"?csort=bestflight_a");
 			
-			if(first == false)
-			{
-				Thread.sleep(4000);
-				driver.findElement(By.cssSelector("[data-test='header-block__link']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.cssSelector("[aria-label='CAD']")).click();
-				Thread.sleep(2000);
-				first = true;
-			}
-			else 
-			{
-				Thread.sleep(8000);
-			}
+//			if(first == false)
+//			{
+//				Thread.sleep(4000);
+//				driver.findElement(By.cssSelector("[data-test='header-block__link']")).click();
+//				Thread.sleep(2000);
+//				driver.findElement(By.cssSelector("[aria-label='CAD']")).click();
+//				Thread.sleep(2000);
+//				first = true;
+//			}
+//			else 
+//			{
+//				Thread.sleep(8000);
+//			}
 
 			String html = driver.getPageSource();
 			
 			try 
 			{
-				BufferedWriter writer = new BufferedWriter(new FileWriter("Crawled_Files_Onetravel//"+origin.toLowerCase()+"_to_"+destination.toLowerCase()+"_" + date_day + "_"+date_month+"_"+date_year+"_Onetravel" + ".html"));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("Crawled_Files_Cheapflights//"+origin.toLowerCase()+"_to_"+destination.toLowerCase()+"_" + date_day + "_"+date_month+"_"+date_year+"_Cheapflights" + ".html"));
 				writer.write(html);
 	            writer.close();
-	            System.out.println(">>>> HTML file created successfully for Date " + date_day + " / "+date_month+" / "+date_year+" of " + origin + " to " + destination + " from Onetravel");
+	            System.out.println(">>>> HTML file created successfully for Date " + date_day + " / "+date_month+" / "+date_year+" of " + origin + " to " + destination + " from Cheapflights");
 	        } 
 			catch (IOException e) 
 			{

@@ -20,7 +20,7 @@ public class EXE {
 		boolean quit = false;
 		Search_Frequency SF = new Search_Frequency();
 		isNumericCheck checkNum = new isNumericCheck();
-		Word_Completion WC = new Word_Completion();
+		Yash_Word_Completion WC = new Yash_Word_Completion();
 		while (quit == false) 
 		{			
 			boolean flag = true;
@@ -86,12 +86,12 @@ public class EXE {
 					
 					
 					/// Frequency Count Feature
-					origin = SF.FrequencySearch_SpellChecking(origin);
+					origin = SF.FrequencySearch_Yash_Spellchecking(origin);
 					
 					System.out.print("\nEnter the Destination place : ");
 					String destination = scan.next().toLowerCase();
 					WC.Word_Completor(destination);
-					destination = SF.FrequencySearch_SpellChecking(destination);
+					destination = SF.FrequencySearch_Yash_Spellchecking(destination);
 					
 					System.out.print("\nDate [dd/mm/yyyy] : ");
 					flag = false;
@@ -101,28 +101,18 @@ public class EXE {
 						String[] input_date_arr = input_date.split("/");
 						if (input_date.matches(regex)) 
 						{
-							if(Integer.parseInt(input_date_arr[0])  >= valDay)
-							{
-								if(Integer.parseInt(input_date_arr[1])  >= valMonth)
-								{
-									if(Integer.parseInt(input_date_arr[2])  >= valYear)
-									{
-										flag = true;
-									}
-									else 
-									{
-										System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format.\n");
-									}
+							// New code allowing dates after the current date
+							if (Integer.parseInt(input_date_arr[2]) > valYear ||
+								    (Integer.parseInt(input_date_arr[2]) == valYear &&
+								    (Integer.parseInt(input_date_arr[1]) > valMonth ||
+								    (Integer.parseInt(input_date_arr[1]) == valMonth &&
+								    Integer.parseInt(input_date_arr[0]) >= valDay)))) {
+								        flag = true;
+								} else {
+								    System.out.println("\nPlease enter a valid date after today in the dd/mm/yyyy format.\n");
 								}
-								else 
-								{
-									System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format.\n");
-								}
-							}
-							else 
-							{
-								System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format.\n");
-							}
+
+
 						}
 						else 
 						{
@@ -133,8 +123,9 @@ public class EXE {
 					String[] date_object = input_date.split("/");
 					WebDriver driver = new EdgeDriver();
 					String folderPath = "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/tmp";
-//					SSC.Crawl_Latest_Selenium(origin, destination);
 					RC.runtime_crawl(origin, destination, Integer.parseInt(date_object[0]), Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]), folderPath, driver);	
+					
+					
 					
 					Kayak_File_Parser KFP = new Kayak_File_Parser();
 					Flight_Detail[] kayak_data_arr = KFP.Kayak_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
@@ -142,14 +133,14 @@ public class EXE {
 					Booking_File_Parser BFP = new Booking_File_Parser();
 					Flight_Detail[] booking_data_arr = BFP.Booking_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
 					
-					Onetravel_File_Parser OFP = new Onetravel_File_Parser();
-					Flight_Detail[] onetravel_data_arr = OFP.Onetravel_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
+					Cheapflights_File_Parser OFP = new Cheapflights_File_Parser();
+					Flight_Detail[] Cheapflights_data_arr = OFP.Cheapflights_File_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
 					
 					Flight_Detail[] result = new Flight_Detail[9];
 					
 					System.arraycopy(kayak_data_arr, 0, result, 0, 3);
 					System.arraycopy(booking_data_arr, 0, result, 3, 3);
-					System.arraycopy(onetravel_data_arr, 0, result, 6, 3);
+					System.arraycopy(Cheapflights_data_arr, 0, result, 6, 3);
 					
 					Sort_Flights sortObj = new Sort_Flights();
 					sortObj.sortFlights(result);
@@ -165,8 +156,7 @@ public class EXE {
 					}
 					
 					Thread.sleep(1000);
-					try { driver.quit(); }
-					catch (Exception e) {}
+
 			        
 					String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/tmp"};
 					
@@ -176,7 +166,7 @@ public class EXE {
 					System.out.println("\nEnter a Keyword for Frequency Count : ");
 					String pat = scan.next();
 					WC.Word_Completor(pat);
-					pat = SF.FrequencySearch_SpellChecking(pat);
+					pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 					FC.Frequency_Counter(folderpaths, pat);
 					
 					// Page Ranking
@@ -185,7 +175,7 @@ public class EXE {
 					System.out.println("\nEnter a Keyword for Page Ranking : ");
 					pat = scan.next();
 					WC.Word_Completor(pat);
-					pat = SF.FrequencySearch_SpellChecking(pat);
+					pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 					PR.Page_Ranker(folderpaths, pat);
 					
 					// Inverted Indexing
@@ -193,11 +183,11 @@ public class EXE {
 					System.out.println("\nEnter a Keyword for Inverted Indexing : ");
 					pat = scan.next();
 					WC.Word_Completor(pat);
-					pat = SF.FrequencySearch_SpellChecking(pat);
+					pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 					call_Inverted_Index II = new call_Inverted_Index();
 					II.Index_Inverter(folderpaths, pat);
 					
-					System.out.println("\n\t**all files from tmp folder are deleted**\n");
+					System.out.println("\n ** All files from the tmp folder will be deleted in few seconds ** \n");
 					
 					Thread.sleep(10000);
 				    // Create a File object for the folder
@@ -268,52 +258,40 @@ public class EXE {
 						System.out.print("\nEnter the origin : ");
 						String origin = scan.next().toLowerCase();
 						WC.Word_Completor(origin);
-						origin = SF.FrequencySearch_SpellChecking(origin);
+						origin = SF.FrequencySearch_Yash_Spellchecking(origin);
 
 //						Search_Frequency SF = new Search_Frequency();
 						System.out.print("\nEnter the destination : ");
 						String destination = scan.next().toLowerCase();
 						WC.Word_Completor(destination);
-						destination = SF.FrequencySearch_SpellChecking(destination);
+						destination = SF.FrequencySearch_Yash_Spellchecking(destination);
 						
 						System.out.print("\nDate [dd/mm/yyyy] : ");
 						flag = false;
 						while (flag == false) 
 						{
 							
-							input_date = scan.next();
+//					input_date = scan.next();
 							String[] input_date_arr = input_date.split("/");
-							System.out.println( Integer.parseInt(input_date_arr[0]) + "" + Integer.parseInt(input_date_arr[1]) + "" + Integer.parseInt(input_date_arr[2]));
 							if (input_date.matches(regex)) 
 							{
-								if(Integer.parseInt(input_date_arr[0])  >= valDay)
-								{
-									if(Integer.parseInt(input_date_arr[1])  >= valMonth)
-									{
-										if(Integer.parseInt(input_date_arr[2])  >= valYear)
-										{
-											flag = true;
-										}
-										else 
-										{
-											System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format. (year) \n");
-										}
+								// New code allowing dates after the current date
+								if (Integer.parseInt(input_date_arr[2]) > valYear ||
+									    (Integer.parseInt(input_date_arr[2]) == valYear &&
+									    (Integer.parseInt(input_date_arr[1]) > valMonth ||
+									    (Integer.parseInt(input_date_arr[1]) == valMonth &&
+									    Integer.parseInt(input_date_arr[0]) >= valDay)))) {
+									        flag = true;
+									} else {
+									    System.out.println("\nPlease enter a valid date after today in the dd/mm/yyyy format.\n");
 									}
-									else 
-									{
-										System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format. (month) \n");
-									}
-								}
-								else 
-								{
-									System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format. (day) \n");
-								}
+
+
 							}
 							else 
 							{
-								System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format. (regex) \n");
-							}
-							
+								System.out.println("\nPlease enter a valid date in the dd/mm/yyyy format.\n");
+							}							
 						}
 						String[] date_object = input_date.split("/");
 						System.out.println("");
@@ -327,15 +305,15 @@ public class EXE {
 						Booking_File_Parser BFP = new Booking_File_Parser();
 						Flight_Detail[] booking_data_arr = BFP.Booking_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
 						
-						folderPath = "Crawled_Files_Onetravel";
-						Onetravel_File_Parser OFP = new Onetravel_File_Parser();
-						Flight_Detail[] onetravel_data_arr = OFP.Onetravel_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
+						folderPath = "Crawled_Files_Cheapflights";
+						Cheapflights_File_Parser OFP = new Cheapflights_File_Parser();
+						Flight_Detail[] Cheapflights_data_arr = OFP.Cheapflights_File_Parser(origin, destination, Integer.parseInt(date_object[1]), Integer.parseInt(date_object[2]) , Integer.parseInt(date_object[0]), folderPath);
 						
 						Flight_Detail[] result = new Flight_Detail[9];
 						
 						System.arraycopy(kayak_data_arr, 0, result, 0, 3);
 						System.arraycopy(booking_data_arr, 0, result, 3, 3);
-						System.arraycopy(onetravel_data_arr, 0, result, 6, 3);
+						System.arraycopy(Cheapflights_data_arr, 0, result, 6, 3);
 						
 						Sort_Flights sortObj = new Sort_Flights();
 						sortObj.sortFlights(result);
@@ -358,7 +336,7 @@ public class EXE {
 			
 			if(feature == 2)
 			{
-				String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Kayak", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Booking", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Onetravel"};
+				String[] folderpaths = {"/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Kayak", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Booking", "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Crawled_Files_Cheapflights"};
 				
 				// Frequency Count
 				System.out.println("\n================================== FEATURE 1 =============================================");
@@ -367,7 +345,7 @@ public class EXE {
 				System.out.println("\nEnter a City for Frequency Count: ");
 				String pat = scan.next();
 				WC.Word_Completor(pat);
-				pat = SF.FrequencySearch_SpellChecking(pat);
+				pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 				
 				// Page Ranking
 				System.out.println("\n================================== FEATURE 2 =============================================");
@@ -376,7 +354,7 @@ public class EXE {
 				System.out.println("\nEnter a City for Page Ranking : ");
 				pat = scan.next();
 				WC.Word_Completor(pat);
-				pat = SF.FrequencySearch_SpellChecking(pat);
+				pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 				PR.Page_Ranker(folderpaths, pat);
 				
 				// Inverted Indexing
@@ -385,7 +363,7 @@ public class EXE {
 				System.out.println("\nEnter a City for Inverted Indexing : ");
 				pat = scan.next();
 				WC.Word_Completor(pat);
-				pat = SF.FrequencySearch_SpellChecking(pat);
+				pat = SF.FrequencySearch_Yash_Spellchecking(pat);
 				call_Inverted_Index II = new call_Inverted_Index();
 				II.Index_Inverter(folderpaths, pat);
 				

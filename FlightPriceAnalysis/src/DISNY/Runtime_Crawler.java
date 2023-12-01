@@ -92,23 +92,23 @@ public class Runtime_Crawler {
 //            System.out.println("Error creating HTML file: " + e.getMessage());
         }
 		
-		//Onetravel
-		driver.get("https://www.onetravel.com/air/listing?&d1="+origin_short+"&r1="+destination_short+"&dt1="+date_month+"/"+date_day+"/"+date_year+"&triptype=ONEWAYTRIP&cl=ECONOMY");
+		//Cheapflights
+		driver.get("https://www.cheapflights.ca/flight-search/"+origin_short+"-"+destination_short+"/"+date_year+"-"+date_month+"-"+date_day+"?csort=bestflight_a");
 		
-		Thread.sleep(5000);
-		driver.findElement(By.cssSelector("[data-test='header-block__link']")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.cssSelector("[aria-label='CAD']")).click();
-		Thread.sleep(2000);
+//		Thread.sleep(5000);
+//		driver.findElement(By.cssSelector("[data-test='header-block__link']")).click();
+//		Thread.sleep(2000);
+//		driver.findElement(By.cssSelector("[aria-label='CAD']")).click();
+//		Thread.sleep(2000);
 
 		html = driver.getPageSource();
 		
 		try 
 		{
-			BufferedWriter writer = new BufferedWriter(new FileWriter(""+folderPath+"//"+origin.toLowerCase()+"_to_"+destination.toLowerCase()+"_" + date_day + "_"+date_month+"_"+date_year+"_Onetravel" + ".html"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(""+folderPath+"//"+origin.toLowerCase()+"_to_"+destination.toLowerCase()+"_" + date_day + "_"+date_month+"_"+date_year+"_Cheapflights" + ".html"));
 			writer.write(html);
             writer.close();
-            System.out.println(">>>> HTML file created successfully for Date " + date_day + " / "+date_month+" / "+date_year+" of " + origin + " to " + destination + " from Onetravel");
+            System.out.println(">>>> HTML file created successfully for Date " + date_day + " / "+date_month+" / "+date_year+" of " + origin + " to " + destination + " from Cheapflights");
         } 
 		catch (IOException e) 
 		{

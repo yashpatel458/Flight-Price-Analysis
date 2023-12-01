@@ -22,7 +22,7 @@ public class Selenium_Crawler_Kayak
 			last_day_of_month = 28;
 		}
 		
-		String origin_short="AMD", destination_short="DXB"; 
+		String origin_short="BOM", destination_short="DEL"; 
 		
 		if (origin.toLowerCase().matches("ahmedabad"))
 		{
@@ -36,6 +36,15 @@ public class Selenium_Crawler_Kayak
 		{
 			origin_short = "YYZ";
 		}
+		else if(origin.toLowerCase().matches("mumbai"))
+		{
+			origin_short = "BOM";
+		}
+		else if(origin.toLowerCase().matches("delhi"))
+		{
+			origin_short = "DEL";
+		}
+		
 		
 		if (destination.toLowerCase().matches("ahmedabad"))
 		{
@@ -49,6 +58,14 @@ public class Selenium_Crawler_Kayak
 		{
 			destination_short = "YYZ";
 		}
+		else if(origin.toLowerCase().matches("mumbai"))
+		{
+			origin_short = "BOM";
+		}
+		else if(origin.toLowerCase().matches("delhi"))
+		{
+			origin_short = "DEL";
+		}
 		
 		WebDriver driver = new EdgeDriver();
 		
@@ -60,7 +77,7 @@ public class Selenium_Crawler_Kayak
 				date_day = "0" + f;
 			}
 			
-			driver.get("https://www.ca.kayak.com/flights/" + origin_short + "-" + destination_short + "/" + date_year + "-" + date_month + "-" + date_day + "?sort=bestflight_a");
+			driver.get("https://www.ca.kayak.com/flights/" + "BOM" + "-" + "DEL" + "/" + date_year + "-" + date_month + "-" + date_day + "?sort=bestflight_a");
 			
 			Thread.sleep(8000);
 

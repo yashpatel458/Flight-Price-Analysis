@@ -12,9 +12,9 @@ public class Search_Frequency {
 
     private static final String CSV_FILE_PATH = "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Search_Frequency/searchFrequency.csv";
 
-    public String FrequencySearch_SpellChecking(String checkWord) throws Exception {
-    	Word_Completion WC = new Word_Completion();
-    	Spellchecking spellchecker = new Spellchecking();
+    public String FrequencySearch_Yash_Spellchecking(String checkWord) throws Exception {
+    	Yash_Word_Completion WC = new Yash_Word_Completion();
+    	Yash_Spellchecking spellchecker = new Yash_Spellchecking();
         String searchTerm = checkWord;
 		boolean check = spellchecker.checkandSuggestWords(searchTerm);
 		Scanner scan = new Scanner(System.in);
