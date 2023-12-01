@@ -12,33 +12,11 @@ public class Runtime_Crawler {
 
 	public void runtime_crawl(String origin, String destination, int date_day_string, int date_month_string, int date_year, String folderPath, WebDriver driver) throws Exception 
 	{
-		String origin_short="AMD", destination_short="DXB"; 
 		
-		if (origin.toLowerCase().matches("ahmedabad"))
-		{
-			origin_short = "AMD";
-		}
-		else if(origin.toLowerCase().matches("dubai"))
-		{
-			origin_short = "DXB";
-		}
-		else if(origin.toLowerCase().matches("toronto"))
-		{
-			origin_short = "YYZ";
-		}
+		convertCodes c = new convertCodes();
 		
-		if (destination.toLowerCase().matches("ahmedabad"))
-		{
-			destination_short = "AMD";
-		}
-		else if(destination.toLowerCase().matches("dubai"))
-		{
-			destination_short = "DXB";
-		}
-		else if(destination.toLowerCase().matches("toronto"))
-		{
-			destination_short = "YYZ";
-		}
+		String origin_short=c.gettingCodes(origin), destination_short=c.gettingCodes(destination); 
+		
 		
 		String date_day = "" + date_day_string;
 		if(date_day_string<10)

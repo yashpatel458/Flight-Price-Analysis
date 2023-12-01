@@ -14,7 +14,7 @@ public class Yash_Spellchecking
 	    
 	    public Yash_Spellchecking() throws FileNotFoundException {
 	            dictionary = new HashSet<>();  // Initialize the HashSet
-	            Scanner sc = new Scanner(new File("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"));  
+	            Scanner sc = new Scanner(new File("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/cities.txt"));  
 	            while (sc.hasNext()) {
 	                String w = sc.next().toLowerCase();  
 	                dictionary.add(w);  // Add word to the dictionary 

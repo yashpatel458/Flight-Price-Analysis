@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class temprun {
 	public static void main(String[] args) {
 		try {
-		      File myObj = new File("dictionary.txt");
+		      File myObj = new File("cities.txt");
 		      Scanner myReader = new Scanner(myObj);
 		      while (myReader.hasNextLine()) {
 		        String data = myReader.nextLine();

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class convertCodes {
 
-  public static void gettingCodes(String cityName) {
+  public static String gettingCodes(String cityName) {
     
     Map<String, String> dictCodes = new HashMap<>();
     String city;
@@ -24,11 +24,12 @@ public class convertCodes {
 
       cities.close();
       codes.close();
-
-      System.out.println(dictCodes.get(cityName.toLowerCase().trim()));
+      return dictCodes.get(cityName.toLowerCase().trim());
+      //System.out.println(dictCodes.get(cityName.toLowerCase().trim()));
 
     } catch (Exception e) {
-      System.out.println("not found");
+    	return null;
+      //System.out.println("not found");
     }
 }
 }

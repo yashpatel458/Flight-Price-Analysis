@@ -22,50 +22,9 @@ public class Selenium_Crawler_Kayak
 			last_day_of_month = 28;
 		}
 		
-		String origin_short="BOM", destination_short="DEL"; 
+		convertCodes c = new convertCodes();
 		
-		if (origin.toLowerCase().matches("ahmedabad"))
-		{
-			origin_short = "AMD";
-		}
-		else if(origin.toLowerCase().matches("dubai"))
-		{
-			origin_short = "DXB";
-		}
-		else if(origin.toLowerCase().matches("toronto"))
-		{
-			origin_short = "YYZ";
-		}
-		else if(origin.toLowerCase().matches("mumbai"))
-		{
-			origin_short = "BOM";
-		}
-		else if(origin.toLowerCase().matches("delhi"))
-		{
-			origin_short = "DEL";
-		}
-		
-		
-		if (destination.toLowerCase().matches("ahmedabad"))
-		{
-			destination_short = "AMD";
-		}
-		else if(destination.toLowerCase().matches("dubai"))
-		{
-			destination_short = "DXB";
-		}
-		else if(destination.toLowerCase().matches("toronto"))
-		{
-			destination_short = "YYZ";
-		}
-		else if(origin.toLowerCase().matches("mumbai"))
-		{
-			origin_short = "BOM";
-		}
-		else if(origin.toLowerCase().matches("delhi"))
-		{
-			origin_short = "DEL";
-		}
+		String origin_short=c.gettingCodes(origin), destination_short=c.gettingCodes(destination);
 		
 		WebDriver driver = new EdgeDriver();
 		

@@ -8,7 +8,7 @@ public class Yash_Word_Completion {
     private TrieNode root = new TrieNode();
   
     public void Word_Completor(String prefix) throws FileNotFoundException {
-        try (Scanner sc = new Scanner(new FileReader("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/dictionary.txt"))) 
+        try (Scanner sc = new Scanner(new FileReader("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/cities.txt"))) 
         {
             while (sc.hasNext()) {
                 String w = sc.next().toLowerCase();

@@ -21,33 +21,10 @@ public class Selenium_Crawler_Booking {
 			last_day_of_month = 28;
 		}
 		
-		String origin_short="AMD", destination_short="DXB"; 
+		convertCodes c = new convertCodes();
+		String origin_short=c.gettingCodes(origin), destination_short=c.gettingCodes(destination);
 		
-		if (origin.toLowerCase().matches("ahmedabad"))
-		{
-			origin_short = "AMD";
-		}
-		else if(origin.toLowerCase().matches("dubai"))
-		{
-			origin_short = "DXB";
-		}
-		else if(origin.toLowerCase().matches("toronto"))
-		{
-			origin_short = "YYZ";
-		}
 		
-		if (destination.toLowerCase().matches("ahmedabad"))
-		{
-			destination_short = "AMD";
-		}
-		else if(destination.toLowerCase().matches("dubai"))
-		{
-			destination_short = "DXB";
-		}
-		else if(destination.toLowerCase().matches("toronto"))
-		{
-			destination_short = "YYZ";
-		}
 		WebDriver driver = new EdgeDriver();
 //		
 		for(int f=1 ; f<=last_day_of_month; f++)
