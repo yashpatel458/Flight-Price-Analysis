@@ -12,7 +12,7 @@ public class Search_Frequency {
 
     private static final String CSV_FILE_PATH = "/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/Search_Frequency/searchFrequency.csv";
 
-    public String FrequencySearch_Yash_Spellchecking(String checkWord) throws Exception {
+    public String Search_Frequency(String checkWord) throws Exception {
     	Yash_Word_Completion WC = new Yash_Word_Completion();
     	Yash_Spellchecking spellchecker = new Yash_Spellchecking();
         String searchTerm = checkWord;
@@ -21,7 +21,7 @@ public class Search_Frequency {
 		while(check == false)
 		{
         	System.out.print("\nEnter again : ");
-			searchTerm = scan.next().toLowerCase();
+			searchTerm = scan.nextLine().toLowerCase();
 			WC.Word_Completor(searchTerm);
 			check = spellchecker.checkandSuggestWords(searchTerm);
 		}
@@ -70,7 +70,7 @@ public class Search_Frequency {
     private static String getSearchTerm() {
         Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a term to search: ");
-		String word = scanner.nextLine(); 
+		String word = scanner.next(); 
 		return word;
 		
     }

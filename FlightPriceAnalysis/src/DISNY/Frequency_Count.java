@@ -52,7 +52,7 @@ public void Frequency_Counter(String[] folderpaths, String pat) throws Exception
 	    	  		scan.useDelimiter("\\Z");
 	    	  		
 	    	  		//Scan the file_Content and making all the words to Lower Case
-	    	  		String file_Content = scan.next().toLowerCase();
+	    	  		String file_Content = scan.nextLine().toLowerCase();
 	    	  		
 	    	  		//Initialize String Tokenizer
 	    	  		StringTokenizer SToken = new StringTokenizer(file_Content);

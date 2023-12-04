@@ -36,7 +36,7 @@ public class Selenium_Crawler_Kayak
 				date_day = "0" + f;
 			}
 			
-			driver.get("https://www.ca.kayak.com/flights/" + "BOM" + "-" + "DEL" + "/" + date_year + "-" + date_month + "-" + date_day + "?sort=bestflight_a");
+			driver.get("https://www.ca.kayak.com/flights/" +origin_short + "-" + destination_short + "/" + date_year + "-" + date_month + "-" + date_day + "?sort=bestflight_a");
 			
 			Thread.sleep(8000);
 
