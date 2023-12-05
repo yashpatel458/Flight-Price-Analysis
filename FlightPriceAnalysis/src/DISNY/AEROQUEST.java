@@ -187,7 +187,7 @@ public class AEROQUEST {
 					        Sort_Flights sortObj = new Sort_Flights();
 					        sortObj.sortFlights(result);
 
-					        System.out.println("\nTop 3 Best results are: \n");
+					        System.out.println("\nTop 3 Best Results are: \n");
 					        System.out.println("-------------------------");
 					        for (int i = 0; i < Math.min(result.length, 3); i++) {
 					            if (result[i] != null) {
@@ -248,9 +248,18 @@ public class AEROQUEST {
 				    String key = sc.nextLine();
 				    
 				    invertedIndexingDP.invertedFinal(folderToIndex, key);
+				    
+				    
+				    //Pattern finding
+				    System.out.println("\n============================================================================");
+				    System.out.println("\nInput anything to start pattern finding : ");
 
-					
-
+				    String anyInput = sc.next();
+				    
+				    if(anyInput!=null) {
+					    patternFindingUsingRegex.patterns("C\\$[\\s]+[0-9]*", folderToIndex);
+				    }
+				    
 					// Frequency Count
 					Frequency_Count FC = new Frequency_Count(0, null);
 					System.out.println("\n============================================================================");
@@ -296,6 +305,8 @@ public class AEROQUEST {
 					            file.delete();
 					        }
 				    }
+					    
+					    
 
 				
 			}
@@ -324,6 +335,7 @@ public class AEROQUEST {
 				{	
 					quit = true;
 					flag = false;
+					System.exit(0);
 				} 
 				else if (quit_string.matches("no") == true)
 				{

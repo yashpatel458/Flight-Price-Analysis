@@ -75,7 +75,8 @@ public class Kayak_File_Parser {
             // Handle the exception
         	 System.out.println("Error parsing Kayak data: " + e.getMessage());
 //        	 e.printStackTrace();
-            // You may want to log the exception or take other actions as needed
+          	 System.out.println("\n-------------------------------------------------------");
+             System.out.println("There must be no flights on Kayak.com for this Route or Date!");
         }
 
         return bestKayakFlights;

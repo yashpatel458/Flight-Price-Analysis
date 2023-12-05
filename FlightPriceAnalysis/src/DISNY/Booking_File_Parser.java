@@ -68,6 +68,8 @@ public class Booking_File_Parser {
         } catch (Exception e) {
             // Handle the exception
         	System.out.println("Error parsing Booking data: " + e.getMessage());
+         	 System.out.println("\n-------------------------------------------------------");
+             System.out.println("There must be no flights on Booking.com for this Route or Date!");
 
         }
 
