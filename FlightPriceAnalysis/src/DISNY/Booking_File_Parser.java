@@ -67,9 +67,8 @@ public class Booking_File_Parser {
             }
         } catch (Exception e) {
             // Handle the exception
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-            // You may want to log the exception or take other actions as needed
+        	System.out.println("Error parsing Booking data: " + e.getMessage());
+
         }
 
         return bestBookingFlights;

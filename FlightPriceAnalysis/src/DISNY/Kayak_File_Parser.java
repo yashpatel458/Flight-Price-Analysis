@@ -28,7 +28,13 @@ public class Kayak_File_Parser {
             File input = new File(path.toLowerCase());
             org.jsoup.nodes.Document doc = Jsoup.parse(input, "UTF-8");
 
-            org.jsoup.select.Elements results = doc.select("div[data-resultid]");
+            
+            org.jsoup.select.Elements results=null;
+            try {
+            results = doc.select("div[data-resultid]");
+            }catch(Exception e) {
+            	System.out.print("here");
+            }
             org.jsoup.select.Elements airlines = doc.select("div[class='J0g6-operator-text']");
             org.jsoup.select.Elements durations = doc.select("div[class='vmXl vmXl-mod-variant-default']");
             org.jsoup.select.Elements prices = doc.select("div[class='f8F1-price-text']");
@@ -67,8 +73,8 @@ public class Kayak_File_Parser {
             }
         } catch (Exception e) {
             // Handle the exception
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
+        	 System.out.println("Error parsing Kayak data: " + e.getMessage());
+//        	 e.printStackTrace();
             // You may want to log the exception or take other actions as needed
         }
 

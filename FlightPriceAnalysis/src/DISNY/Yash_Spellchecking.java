@@ -1,40 +1,45 @@
 package DISNY;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Yash_Spellchecking {
-    private Set<String> dictionary;
-
+    
+	private Set<String> dictionary;
+    
+    // The constructor initializes the dictionary by reading words from a file (cities.txt) and adding them to the HashSet.
     public Yash_Spellchecking() throws FileNotFoundException {
-        dictionary = new HashSet<>();  // Initialize the HashSet
+        dictionary = new HashSet<>();  // Initialize the HashSet        
         Scanner sc = new Scanner(new File("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/cities.txt"));
         while (sc.hasNext()) {
-            String w = sc.next().toLowerCase();
+            String w = sc.nextLine().trim().toLowerCase();
+            //System.out.println(w);
             dictionary.add(w);  // Add word to the dictionary
         }
         sc.close();
     }
 
+    // This method checks if a given word exists in the dictionary (HashSet).
     public boolean probe(String word) {
         return dictionary.contains(word.toLowerCase());
     }
 
- // Recommends new word
+    // This method suggests corrections for a misspelled word by calculating the edit distance between the misspelled word and each word in the dictionary.
+    // It returns a list of recommended corrections.
+    
     public List<String> recommendations(String testWord) {
-        List<String> recommendationArrayList = new ArrayList<>();
-
+           List<String> recommendationArrayList = new ArrayList<>();
+           //String testWord = t.trim();
         if (dictionary.contains(testWord)) {
             return recommendationArrayList;
         }
 
-//        int minDistance = Integer.MAX_VALUE;
-        int minDistance = 3;
-        System.out.print(dictionary);
+       // int minDistance = Integer.MAX_VALUE;
+        
+      int minDistance = 3;
 
-        for (String correctWord : dictionary) {
+       for (String correctWord : dictionary) {
             
                 int dist = computeEditDistance(correctWord, testWord);
                 if (dist < minDistance) {
@@ -43,13 +48,13 @@ public class Yash_Spellchecking {
                     recommendationArrayList.add(correctWord);
                 } else if (dist == minDistance) {
                     recommendationArrayList.add(correctWord);
-                }
-            
+                }       
         }
 
         return recommendationArrayList;
     }
 
+    // This method calculates the edit distance between two strings using dynamic programming.
     private int computeEditDistance(String s, String t) {
         int k = s.length();
         int l = t.length();
@@ -72,7 +77,12 @@ public class Yash_Spellchecking {
         return jp[k][l];
     }
 
-    public boolean checkandSuggestWords(String w) throws FileNotFoundException {
+    //    This method performs spell checking on a given word.
+    //    If the word is non-alphabetic, it displays an error message.
+    //    If the word is in the dictionary, it indicates that the spelling is correct.
+    //    If the word is not in the dictionary, it suggests corrections based on the edit distance.
+    
+     public boolean checkandSuggestWords(String w) throws FileNotFoundException {
         Yash_Spellchecking spellchecker = new Yash_Spellchecking();
 
         if (!w.matches("[a-zA-Z ]+")) {

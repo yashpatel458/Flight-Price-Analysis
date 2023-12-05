@@ -67,9 +67,9 @@ public class Cheapflights_File_Parser {
             }
         } catch (Exception e) {
             // Handle the exception
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-            // You may want to log the exception or take other actions as needed
+        	 System.out.println("Error parsing Cheapflights data: " + e.getMessage());
+//        	 e.printStackTrace();
+            System.out.println("There must be no flights for this Route or Date!");
         }
 
         return bestCheapflightsFlights;

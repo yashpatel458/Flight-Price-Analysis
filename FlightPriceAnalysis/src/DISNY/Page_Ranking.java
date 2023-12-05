@@ -34,13 +34,13 @@ public class Page_Ranking
 
 //	Page_Rank_Object[] PRO = new Page_Rank_Object[600];
 //	int k = 0;
+	   
 	   Map<Integer, String> Hash_Map = new HashMap<>();
        List<Page_Ranking> prObject = new ArrayList<>();
-	public void Page_Ranker(String[] folderpaths, String pat) throws Exception 
+	public void Page_Ranker(String folderpaths, String pat) throws Exception 
 	{
-		for(String folderpath : folderpaths)
-		{
-			File folder = new File(folderpath);
+		
+			File folder = new File(folderpaths);
 
 		    // List all the files in the folder
 		    File[] listOfFiles = folder.listFiles();
@@ -57,7 +57,7 @@ public class Page_Ranking
 		      {
 //		    	  System.out.println("File: " + listOfFiles[i].getName());;
 		    	  		String txt = "";
-		    	  		File file = new File(folderpath + "//" + listOfFiles[i].getName());
+		    	  		File file = new File(folderpaths + "//" + listOfFiles[i].getName());
 		    	  		
 		    	  		//Scanner class to implement scanning
 		    	  		Scanner scan = new Scanner(file);
@@ -101,7 +101,7 @@ public class Page_Ranking
 		    	          scan.close();
 		      }
 		    }		    
-		}
+		
 		Collections.sort(prObject, Comparator.comparingInt(Page_Ranking::getIntValue).reversed());
 
 		System.out.println("");

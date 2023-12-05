@@ -10,6 +10,7 @@ public class Yash_Word_Completion {
 //    This method reads a file containing a list of words from a file named "cities.txt."
 //    It builds a trie data structure by inserting each word into the trie.
 //    After building the trie, it searches for words with a given prefix and prints the completions. 
+    
     public void Word_Completor(String prefix) throws FileNotFoundException {
         try (Scanner sc = new Scanner(new FileReader("/Users/yashpatel/git/Flight-Price-Analysis/FlightPriceAnalysis/src/cities.txt"))) {
             while (sc.hasNext()) {
@@ -125,6 +126,6 @@ public class Yash_Word_Completion {
 
     public static void main(String[] args) throws FileNotFoundException {
         Yash_Word_Completion wordCompletion = new Yash_Word_Completion();
-        wordCompletion.Word_Completor("");
+        wordCompletion.Word_Completor("lon");
     }
 }

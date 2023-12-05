@@ -30,11 +30,11 @@ public class Frequency_Count {
 
 //  Map<Integer, String> Hash_Map = new HashMap<>();
   List<Frequency_Count> freqObj = new ArrayList<>();
-public void Frequency_Counter(String[] folderpaths, String pat) throws Exception 
+public void Frequency_Counter(String folderpaths, String pat) throws Exception 
 {
-	for(String folderpath : folderpaths)
+
 	{
-		File folder = new File(folderpath);
+		File folder = new File(folderpaths);
 
 	    File[] listOfFiles = folder.listFiles();
 	    
@@ -43,7 +43,7 @@ public void Frequency_Counter(String[] folderpaths, String pat) throws Exception
 	      if (listOfFiles[i].isFile()) 
 	      {
 	    	  		String txt = "";
-	    	  		File file = new File(folderpath + "/" + listOfFiles[i].getName());
+	    	  		File file = new File(folderpaths + "/" + listOfFiles[i].getName());
 	    	  		
 	    	  		//Scanner class to implement scanning
 	    	  		Scanner scan = new Scanner(file);
@@ -88,11 +88,12 @@ public void Frequency_Counter(String[] folderpaths, String pat) throws Exception
 	    	          scan.close();
 	      }
 	    }		    
-	}
+	
 	System.out.println("");
 	for (Frequency_Count obj : freqObj) {
         System.out.println(obj.getIntValue() + " " + obj.getStringValue());
     }
 	System.out.println("");
+}
 }
 }
